@@ -5,8 +5,9 @@ import schema from './graphql';
 
 dotenv.config({ silent: true });
 const app = express();
+const graphqlEndpoint = '/graphql';
 
-app.use('/query', graphqlHTTP({
+app.use(graphqlEndpoint, graphqlHTTP({
   schema,
   graphiql: true,
 }));
@@ -14,4 +15,4 @@ app.use('/query', graphqlHTTP({
 app.listen(process.env.PORT);
 
 console.log(`Server started on port ${process.env.PORT}`);
-console.log('GraphQL endpoint: /query');
+console.log(`GraphQL endpoint: ${graphqlEndpoint}`);

@@ -17,3 +17,8 @@ An API for managing a user
 ## Run
 
 - npm run dev
+
+## Usage
+
+- See the graphiql editor at /graphql for documentation and example usage
+- The graphql endpoint accepts POST requests with a query parameter that contains the graphql query
