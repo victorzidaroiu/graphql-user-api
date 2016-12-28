@@ -27,6 +27,10 @@ const User = new GraphQLObjectType({
       type: GraphQLString,
       resolve: user => user.email,
     },
+    created: {
+      type: GraphQLString,
+      resolve: user => user.created,
+    },
   }),
 });
 

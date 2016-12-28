@@ -6,5 +6,7 @@ export default mongoose.model(
     email: 'String',
     forename: 'String',
     surname: 'String',
+  }, {
+    timestamps: true,
   }),
 );

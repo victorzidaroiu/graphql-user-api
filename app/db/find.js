@@ -27,6 +27,7 @@ export default args => new Promise((resolve) => {
         surname: user.surname,
         email: user.email,
         forename: user.forename,
+        created: user.createdAt,
       })));
     });
 });
