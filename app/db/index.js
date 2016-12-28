@@ -9,7 +9,11 @@ import update from './update';
 mongoose.Promise = bluebird;
 dotenv.config({ silent: true });
 
-mongoose.connect(process.env.MONGODB_URL);
+if (process.env.NODE_ENV === 'test') {
+  mongoose.connect(process.env.MONGODB_TESTING_URL);
+} else {
+  mongoose.connect(process.env.MONGODB_URL);
+}
 
 export default {
   find,

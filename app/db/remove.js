@@ -1,12 +1,18 @@
 import UserModel from './user-model';
+import dbToGraphql from './db-to-graphql';
 
-export default id => new Promise((resolve) => {
+export default id => new Promise((resolve, reject) => {
   UserModel
-  .findByIdAndRemove(id)
-  .exec()
-  .then((user) => {
-    resolve(user ? {
-      id: user._id,
-    } : null);
-  });
+    .findByIdAndRemove(id)
+    .exec()
+    .then((user) => {
+      if (!user) {
+        throw new Error();
+      }
+
+      resolve(dbToGraphql(user));
+    })
+    .catch(() => {
+      reject('Can\'t find any user with that id');
+    });
 });

@@ -1,4 +1,5 @@
 import UserModel from './user-model';
+import dbToGraphql from './db-to-graphql';
 
 export default args => new Promise((resolve) => {
   let userFind = UserModel.find();
@@ -22,12 +23,9 @@ export default args => new Promise((resolve) => {
   userFind
     .exec()
     .then((users) => {
-      resolve(users.map(user => ({
-        id: user._id,
-        surname: user.surname,
-        email: user.email,
-        forename: user.forename,
-        created: user.createdAt,
-      })));
+      resolve(users.map(dbToGraphql));
+    })
+    .catch(() => {
+      reject('Unable to find user.');
     });
 });
