@@ -61,6 +61,21 @@ const Query = new GraphQLObjectType({
 const Mutation = new GraphQLObjectType({
   name: 'Mutation',
   fields: () => ({
+    removeUser: {
+      type: User,
+      args: {
+        id: {
+          type: new GraphQLNonNull(GraphQLString),
+        },
+      },
+      resolve: (_, args) => {
+        if (validator.isEmpty(args.id)) {
+          throw new Error('Id is empty.');
+        }
+
+        return db.remove(args.id);
+      },
+    },
     addUser: {
       type: User,
       args: {
@@ -87,7 +102,43 @@ const Mutation = new GraphQLObjectType({
           throw new Error('Surname is empty.');
         }
 
-        db.add(args);
+        return db.add(args);
+      },
+    },
+    updateUser: {
+      type: User,
+      args: {
+        id: {
+          type: new GraphQLNonNull(GraphQLString),
+        },
+        email: {
+          type: GraphQLString,
+        },
+        forename: {
+          type: GraphQLString,
+        },
+        surname: {
+          type: GraphQLString,
+        },
+      },
+      resolve: (_, args) => {
+        if (validator.isEmpty(args.id)) {
+          throw new Error('Id is empty.');
+        }
+
+        if (Object.prototype.hasOwnProperty.call(args, 'email') && !validator.isEmail(args.email)) {
+          throw new Error('Email is invalid.');
+        }
+
+        if (Object.prototype.hasOwnProperty.call(args, 'forename') && validator.isEmpty(args.forename)) {
+          throw new Error('Forename is empty.');
+        }
+
+        if (Object.prototype.hasOwnProperty.call(args, 'surname') && validator.isEmpty(args.surname)) {
+          throw new Error('Surname is empty.');
+        }
+
+        return db.update(args);
       },
     },
   }),
