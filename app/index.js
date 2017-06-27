@@ -5,7 +5,7 @@ import schema from './graphql';
 
 dotenv.config({ silent: true });
 const app = express();
-const graphqlEndpoint = '/graphql';
+const graphqlEndpoint = '/graphiql';
 
 app.use(graphqlEndpoint, graphqlHTTP({
   schema,
