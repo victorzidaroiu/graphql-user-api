@@ -77,7 +77,7 @@ describe('User API', () => {
     });
   });
 
-  it("should delete a user", (done) => {
+  it('should delete a user', (done) => {
     const query = `
       mutation {
         removeUser(id: "${userId}") {
