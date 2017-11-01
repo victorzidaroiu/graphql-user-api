@@ -4,7 +4,7 @@ An API for managing a user
 
 ## Requirements
 
-- Node 6.3
+- Node 8.9
 - MongoDB
 - Nodemon
 
