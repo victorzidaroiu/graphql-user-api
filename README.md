@@ -8,7 +8,7 @@ An API for managing a user
 - MongoDB
 - Nodemon
 
-## Setup
+## Installation
 
 - `npm i -g nodemon`
 - `cp .env.dev .env`
@@ -20,9 +20,10 @@ An API for managing a user
 
 - npm run dev
 
-## Tests
+## Integration Tests
 
-`npm test` to run the integration tests. MongoDB must be started.
+- Start mongodb
+- Run `npm test`
 
 ## How to consume the API
 
