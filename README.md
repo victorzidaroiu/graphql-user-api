@@ -26,6 +26,7 @@ An API for managing a user
 
 ## How to consume the API
 
+- Graphql endpoint: http://localhost:3000/graphql
 - See the graphiql editor at http://localhost:3000/graphiql for documentation and example usage
 - The graphql endpoint accepts POST requests with a query parameter that contains the graphql query
 - See the integration tests for example queries
