@@ -1,7 +1,7 @@
 import UserModel from './user-model';
 import dbToGraphql from './db-to-graphql';
 
-export default args => new Promise((resolve) => {
+export default args => new Promise((resolve, reject) => {
   let userFind = UserModel.find();
 
   if (args.email) {

@@ -5,12 +5,12 @@ import faker from 'faker';
 import '../src';
 
 dotenv.config({ silent: true });
-const endpointUrl = `http://localhost:${process.env.PORT}/graphql`;
 
 let userId;
 let email = faker.internet.email();
 let surname = faker.name.lastName();
 let forename = faker.name.firstName();
+const endpointUrl = `http://localhost:${process.env.PORT}/graphql`;
 
 describe('User API', () => {
   it('should add a user', (done) => {
