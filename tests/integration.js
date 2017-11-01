@@ -2,7 +2,7 @@ import restler from 'restler';
 import { assert } from 'chai';
 import dotenv from 'dotenv';
 import faker from 'faker';
-import '../app';
+import '../src';
 
 dotenv.config({ silent: true });
 const endpointUrl = `http://localhost:${process.env.PORT}/graphql`;
@@ -23,14 +23,14 @@ describe('User API', () => {
     `;
 
     restler
-    .post(endpointUrl, { data: { query } })
-    .on('complete', (response) => {
-      userId = response.data.addUser.id;
-      assert.deepEqual(response.data.addUser.email, email);
-      assert.deepEqual(response.data.addUser.surname, surname);
-      assert.deepEqual(response.data.addUser.forename, forename);
-      done();
-    });
+      .post(endpointUrl, { data: { query } })
+      .on('complete', (response) => {
+        userId = response.data.addUser.id;
+        assert.deepEqual(response.data.addUser.email, email);
+        assert.deepEqual(response.data.addUser.surname, surname);
+        assert.deepEqual(response.data.addUser.forename, forename);
+        done();
+      });
   });
 
   it('should get a user by id, email, surname and forename', (done) => {
@@ -43,14 +43,14 @@ describe('User API', () => {
     `;
 
     restler
-    .post(endpointUrl, { data: { query } })
-    .on('complete', (response) => {
-      assert.deepEqual(response.data.users[0].id, userId);
-      assert.deepEqual(response.data.users[0].email, email);
-      assert.deepEqual(response.data.users[0].surname, surname);
-      assert.deepEqual(response.data.users[0].forename, forename);
-      done();
-    });
+      .post(endpointUrl, { data: { query } })
+      .on('complete', (response) => {
+        assert.deepEqual(response.data.users[0].id, userId);
+        assert.deepEqual(response.data.users[0].email, email);
+        assert.deepEqual(response.data.users[0].surname, surname);
+        assert.deepEqual(response.data.users[0].forename, forename);
+        done();
+      });
   });
 
   it('should update a user\'s email, surname and forename', (done) => {
@@ -67,14 +67,14 @@ describe('User API', () => {
     `;
 
     restler
-    .post(endpointUrl, { data: { query } })
-    .on('complete', (response) => {
-      assert.deepEqual(response.data.updateUser.id, userId);
-      assert.deepEqual(response.data.updateUser.email, email);
-      assert.deepEqual(response.data.updateUser.surname, surname);
-      assert.deepEqual(response.data.updateUser.forename, forename);
-      done();
-    });
+      .post(endpointUrl, { data: { query } })
+      .on('complete', (response) => {
+        assert.deepEqual(response.data.updateUser.id, userId);
+        assert.deepEqual(response.data.updateUser.email, email);
+        assert.deepEqual(response.data.updateUser.surname, surname);
+        assert.deepEqual(response.data.updateUser.forename, forename);
+        done();
+      });
   });
 
   it('should delete a user', (done) => {
@@ -87,13 +87,13 @@ describe('User API', () => {
     `;
 
     restler
-    .post(endpointUrl, { data: { query } })
-    .on('complete', (response) => {
-      assert.deepEqual(response.data.removeUser.id, userId);
-      assert.deepEqual(response.data.removeUser.email, email);
-      assert.deepEqual(response.data.removeUser.surname, surname);
-      assert.deepEqual(response.data.removeUser.forename, forename);
-      done();
-    });
+      .post(endpointUrl, { data: { query } })
+      .on('complete', (response) => {
+        assert.deepEqual(response.data.removeUser.id, userId);
+        assert.deepEqual(response.data.removeUser.email, email);
+        assert.deepEqual(response.data.removeUser.surname, surname);
+        assert.deepEqual(response.data.removeUser.forename, forename);
+        done();
+      });
   });
 });
